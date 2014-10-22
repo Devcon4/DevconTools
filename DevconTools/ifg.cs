@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 namespace DevconTools {
     //Image File Generator: Used simply create images.
     public static class ifg {
-        
-         public static void CreateBitmapFromBytes(byte[] pixelValues, int width, int height, string fileName)
-        {
+
+        public static Bitmap CreateBitmapFromBytes(byte[] pixelValues, int width, int height, string fileName) {
             //Create an image that will hold the image data
             Bitmap pic = new Bitmap(width, height, PixelFormat.Format16bppGrayScale);
 
@@ -26,9 +25,9 @@ namespace DevconTools {
             Marshal.Copy(pixelValues, 0, pixelStartAddress, pixelValues.Length);
 
             pic.UnlockBits(picData);
-             pic.Dispose();
-             pic = null;
-             //pic.Save(@"C:\Users\Home\Desktop\Data2D.png", ImageFormat.Png);
+            return pic;
+            
+            //pic.Save(@"C:\Users\Home\Desktop\Data2D.png", ImageFormat.Png);
         }
     }
 }

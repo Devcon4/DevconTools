@@ -16,18 +16,11 @@ namespace Execute {
 
 
         static void Main(string[] args) {
-            Random r = new Random();
-            int width = 100;
-            int height = 100;
-            byte[] pixelValues = new byte[width * height*2];
-            for (int i = 0; i < pixelValues.Length; ++i) {
-                //Just create random pixel values, don't care about
-                //being greyscale values for example
-                pixelValues[i] = (byte)r.Next(0, 256);
-            }
 
-            //ifg.CreateBitmapFromBytes(pixelValues, width, height, "Data2D-1");
+            
+        }
 
+        static void cosineTest(){
             Text textC = new Text();
             int j = 0;
             List<float> values = new List<float>();
