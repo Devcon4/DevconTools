@@ -10,14 +10,31 @@ using DevconTools;
 namespace Execute {
     public static class Program {
 
+        private static System.IO.StreamWriter textStream = new System.IO.StreamWriter(
+                                                           @"C:\Users\Home\Desktop\DataIMP-1.txt");
+
         public static void print(dynamic input) { Console.WriteLine(input); }
         public static void readKey() { Console.ReadKey(); }
         public static bool bReadKey() { Console.ReadKey(); return true; }
 
 
         static void Main(string[] args) {
-
+            smoothNoiseIMPROVEDTest();
             
+        }
+
+        static void smoothNoiseIMPROVEDTest() {
+            int height = 25;
+            
+            for (int i = 0; i < height; i++) {
+                float num = pnng.smoothNoise1D(i, 1, 1, 1);
+                string text = " X:" + i + " num:" + num.ToString();
+                addToText(text);
+
+            }
+
+            closeTextStream();
+
         }
 
         static void cosineTest(){
@@ -26,7 +43,7 @@ namespace Execute {
             List<float> values = new List<float>();
             for (int i = 0; true; i=DateTime.Now.Millisecond ) {
                 if (i<DateTime.Now.Millisecond) {
-                    float k = pnng.Noise1D(DateTime.Now.Millisecond);
+                    float k = pnng.rawNoise1D(DateTime.Now.Millisecond);
                     values.Add(k);
                     j++;
                 }
@@ -40,16 +57,30 @@ namespace Execute {
                     float num = (float)pnng.Cosine_Interpolation(values[o], values[o + 1], n);
                     textC.values.Add(num);
                     print("num:"+num+" count:"+o);
-
+                    addToText(num.ToString());
                 }
             }
 
-            System.IO.StreamWriter file = new System.IO.StreamWriter(
-                                          @"C:\Users\Home\Desktop\Data-4.xml");
 
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(textC.GetType());
-            x.Serialize(file, textC);
-            file.Close();
+            closeTextStream();
+        }
+
+        //Old xml code. not functional.
+        public static void xmlSerialization() {
+
+            //System.IO.StreamWriter file = new System.IO.StreamWriter(
+                                          //@"C:\Users\Home\Desktop\Data-4.xml");
+
+            //System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(textC.GetType());
+            //x.Serialize(file, textC);
+            //file.Close();
+        }
+
+        public static void addToText(String text) {
+            textStream.Write(text);
+        }
+        public static void closeTextStream() {
+            textStream.Close();
         }
     }
 }
