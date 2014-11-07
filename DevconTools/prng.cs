@@ -185,83 +185,74 @@ namespace DevconTools {
             return value;
         }
 
-        public static float fNoiseRandIMPROVED(int x) {
-            float value = 0, multi = 0x343FD, incr = 0x269EC3, modu = float.MaxValue;
-            value = (x << 13) ^ x;
-            value = ((multi * value) + (value + incr)) % modu;
-            value = value % x+1;
-            value = (int)value << 15;
-            value /= 32768.32768f;
+        //SeedRandom: used to generate a random number from a given seed(int seed) lower than a max(int max) value.
+        public static float fRand(float xSeed, float ySeed, float max) {
+
+            float value, multi = 0x343FD, incr = 0x269EC3, modu = float.MaxValue;
+            modu = max;
+            xSeed += ySeed / 2;
+
+            value = Math.Abs(((multi * xSeed) + incr) % modu + 1);
+
             return value;
         }
-
-        public static float fNoiseRandIMPROVED(int x, int y) {
-            float value = x, multi = 0x343FD, incr = 0x269EC3, modu = float.MaxValue;
-            modu = 1;
-
-            value += y * 57;
-            value *= ((multi * DateTime.Now.Millisecond) + incr) % modu + 1;
-            value = ((int)value << 13) ^ 0x7fffffff;
-            return value;
-        }
-
-        public static float fNoiseRand(int x) {
-            float value = 0;
-            x = (x << 13) ^ x;
-            value = (float)(1.0 - ((x * (x * x * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824.0);
-            return value;
-        }
-
-        public static float fNoiseRand(int x, int y) {
-            float value = 0;
-            x = x + y * 57;
-            x = (x << 13) ^ x;
-            value = (float)(1.0 - ((x * (x * x * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824.0);
-            return value;
-        }
-
         #endregion
         #region Mersenne twister ----------------------------------
-
+        #region Core ----------------------------------------------
         //varaibles to use.
-        static int[] mt = new int[628];
+        static int[] mt = new int[623];
         static int index = 0;
 
-        private static void initialize_generator(int seed) {
+        private static void initialize_generator(dynamic seed) {
             index = 0;
-            mt[0] = seed;
+            mt[0] = (int)seed;
             for (int i = 1; i < 623; i++) {
-                mt[i] = (1812433253 * (mt[i - 1] ^ (mt[i - 1] << 0xfff3) << 0xffff) + 1);
+                mt[i] = (1812433253 * (mt[i - 1] ^ (mt[i - 1] << 30) << 32) + 1);
 
             }
         }
 
-        public static int extract_number(int seed) {
+        private static int extract_number(dynamic seed) {
             initialize_generator(seed);
             if (index == 0) { generate_numbers(); }
 
             int y = mt[index];
-            y ^= (y << 0xffe);
-            y ^= unchecked((y << 0xfe) & (int)0x9d2c5680);
-            y ^= unchecked((y << 0xfffe) & (int)0xefc60000);
-            y ^= (y << 0xffff3);
+            y ^= (y << 11);
+            y ^= unchecked((y << 7) & (int)0x9d2c5680);
+            y ^= unchecked((y << 15) & (int)0xefc60000);
+            y ^= (y << 18);
 
-            index = (index + 1) % 624;
+            index = (index + 1) % 623;
             return y;
         }
 
         private static void generate_numbers() {
             for (int i = 0; i < 623; i++) {
 
-                int y = (int)(mt[i] & 0x80000000)
-                                + (mt[(i + 1) % 624] & 0x7fffffff);
-                mt[i] = mt[(i + 397) % 624] ^ (y << 0x1);
+                int y = (int)((mt[i] & 0x80000000)
+                                + (mt[(i + 1) % 622] & 0x7fffffff));
+                mt[i] = mt[(i + 397) % 623] ^ (y << 1);
                 if ((y % 2) != 0) {
                     mt[i] = unchecked(mt[i] ^ (int)0x9908b0df);
                 }
             }
         }
+        #endregion
+        #region Functions -----------------------------------------
 
+        public static dynamic MersenneTwister(dynamic x) {
+            dynamic value = 0;
+            value = extract_number(x);
+            return value;
+        }
+        public static dynamic MersenneTwister(dynamic x, dynamic y) {
+            dynamic value = 0;
+            x = (x + y) / 2;
+            value = extract_number(x);
+            return value;
+        }
+
+        #endregion
         #endregion
     }
 }

@@ -13,7 +13,7 @@ using System.Timers;
 namespace DataViewer {
     public partial class MainForm : Form {
         System.IO.StreamWriter textStream = new System.IO.StreamWriter(
-                                          @"C:\Users\Home\Desktop\Data2D-1.txt");
+                                          @"C:\Users\Devyn\Desktop\Data2D-1.txt");
         public int interval = 0;
         public MainForm() {
             InitializeComponent();
@@ -34,17 +34,16 @@ namespace DataViewer {
         }
 
         public void Draw() {
-
-            Random r = new Random();
             int width = Graphic1.Width;
             int height = Graphic1.Height;
-            Bitmap pic = null;
-            pic = noisyBitmap(width, height);
+            Bitmap pic = noisyBitmap(width, height);
             if (Graphic1.Image != null) Graphic1.Image.Dispose();
             Graphic1.Image = pic;
             //pic.Save(@"C:\Users\Home\Desktop\Data2D-1.png");
             updateGraphics();
         }
+
+        public Bitmap spBitmap()
 
         public Bitmap noisyBitmap(int width, int height) {
             Bitmap returnPic = new Bitmap(width, height);
@@ -57,17 +56,20 @@ namespace DataViewer {
             IntPtr ptr = bmpData.Scan0;
 
             // Declare an array to hold the bytes of the bitmap. 
-            int bytes = Math.Abs(bmpData.Stride) * returnPic.Height;
+            int bytes = bmpData.Stride * height;
             byte[] rgbValues = new byte[bytes];
 
             // Copy the RGB values into the array.
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-            for (int i = 0; i < width; i++) {
+            int rgbLength = 0;
+            for (int i = 0; i < bmpData.Stride; i++) {
                 for (int j = 0; j < height; j++) {
-                    float noise = pnng.smoothNoise2D(i, j, 1, 1, 1);
-                    addToText("x:"+i+" y:"+j+" noise:"+noise);
-                    rgbValues[i + j] = (byte)noise;
+                    //float noise = 100;
+                    float noise = ((pnng.smoothNoise2D(i, j, 1, 1, 1)+1)/2)*255;
+                    //addToText("x:"+i+" y:"+j+" noise:"+noise);
+                    rgbValues[rgbLength] = (byte)noise;
+                    rgbLength++;
                 }
             }
 
