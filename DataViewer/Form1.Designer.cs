@@ -33,7 +33,7 @@
             this.Graphic1.BackColor = System.Drawing.SystemColors.Highlight;
             this.Graphic1.Location = new System.Drawing.Point(93, 12);
             this.Graphic1.Name = "Graphic1";
-            this.Graphic1.Size = new System.Drawing.Size(382, 353);
+            this.Graphic1.Size = new System.Drawing.Size(140, 121);
             this.Graphic1.TabIndex = 0;
             this.Graphic1.TabStop = false;
             // 
@@ -51,7 +51,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 377);
+            this.ClientSize = new System.Drawing.Size(245, 145);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Graphic1);
             this.Name = "MainForm";

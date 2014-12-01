@@ -247,8 +247,9 @@ namespace DevconTools {
         }
         public static dynamic MersenneTwister(dynamic x, dynamic y) {
             dynamic value = 0;
-            x = (x + y) / 2;
-            value = extract_number(x);
+            x = extract_number(x);
+            y = extract_number(y);
+            value = (x * y);
             return value;
         }
 

@@ -36,14 +36,29 @@ namespace DataViewer {
         public void Draw() {
             int width = Graphic1.Width;
             int height = Graphic1.Height;
-            Bitmap pic = noisyBitmap(width, height);
+            Bitmap pic = spBitmap(width, height);
             if (Graphic1.Image != null) Graphic1.Image.Dispose();
             Graphic1.Image = pic;
-            //pic.Save(@"C:\Users\Home\Desktop\Data2D-1.png");
+            //pic.Save(@"C:\Users\Devyn\Desktop\Data2D-3.png");
             updateGraphics();
         }
 
-        public Bitmap spBitmap()
+        public Bitmap spBitmap(int width, int height) {
+            Bitmap value = new Bitmap(width, height);
+
+            float lastNoise;
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    float noise = (((pnng.smoothNoise2D(i, j, 1, 1, 1) + 1) / 2) * 255);
+                    lastNoise = noise;
+
+                    Color clr = Color.FromArgb((int)noise, (int)noise, (int)noise);
+                    value.SetPixel(i, j, clr);
+                }
+            }
+
+            return value;
+        }
 
         public Bitmap noisyBitmap(int width, int height) {
             Bitmap returnPic = new Bitmap(width, height);
@@ -66,7 +81,7 @@ namespace DataViewer {
             for (int i = 0; i < bmpData.Stride; i++) {
                 for (int j = 0; j < height; j++) {
                     //float noise = 100;
-                    float noise = ((pnng.smoothNoise2D(i, j, 1, 1, 1)+1)/2)*255;
+                    float noise = ((pnng.smoothNoise2D(i+interval, j+interval, 1, 1, 1)+1)/2)*256;
                     //addToText("x:"+i+" y:"+j+" noise:"+noise);
                     rgbValues[rgbLength] = (byte)noise;
                     rgbLength++;

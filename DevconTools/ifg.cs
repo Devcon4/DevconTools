@@ -9,25 +9,46 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace DevconTools {
-    //Image File Generator: Used simply create images.
+    //Image File Generator: Used to  create images.
     public static class ifg {
 
-        public static Bitmap CreateBitmapFromBytes(byte[] pixelValues, int width, int height, string fileName) {
-            //Create an image that will hold the image data
-            Bitmap pic = new Bitmap(width, height, PixelFormat.Format16bppGrayScale);
+        public struct PixelData {
 
-            //Get a reference to the images pixel data
-            Rectangle dimension = new Rectangle(0, 0, pic.Width, pic.Height);
-            BitmapData picData = pic.LockBits(dimension, ImageLockMode.ReadWrite, pic.PixelFormat);
-            IntPtr pixelStartAddress = picData.Scan0;
+            public byte B;
+            public byte G;
+            public byte R;
 
-            //Copy the pixel data into the bitmap structure
-            Marshal.Copy(pixelValues, 0, pixelStartAddress, pixelValues.Length);
+            public PixelData(byte r, byte g, byte b) {
+                R = r;
+                G = g;
+                B = b;
+            }
+        }
 
-            pic.UnlockBits(picData);
-            return pic;
+        public unsafe static Bitmap heightMap(int width, int height, float amplitude, int octive, int frequency) {
+            Bitmap returnPic = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+            Rectangle rect = new Rectangle(0, 0, width, height);
+            System.Drawing.Imaging.BitmapData bmpData =
+                returnPic.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite,
+                returnPic.PixelFormat);
             
-            //pic.Save(@"C:\Users\Home\Desktop\Data2D.png", ImageFormat.Png);
+            PixelData* pixelPtr = (PixelData*)(void*)bmpData.Scan0;
+
+            for (int x = 0; x < height; x++) {
+                for (int y = 0; y < width; y++) {
+
+                    byte value = (byte)(((pnng.smoothNoise2D(x, y, amplitude, octive, frequency) + 1) / 2) * 255);
+                    *pixelPtr = new PixelData(value, value, value);
+
+                    pixelPtr++;
+                }
+            }
+
+            // Unlock the bits.
+            returnPic.UnlockBits(bmpData);
+
+            return returnPic;
         }
     }
 }

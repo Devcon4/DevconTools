@@ -45,25 +45,22 @@ namespace DevconTools {
             return value;
         }
 
-        public static float smoothNoise1D(float x, float persistence, int octave, float frequency) {
-            float value = 0, amplitude;
+        public static float smoothNoise1D(float x, float amplitude, int octave, float frequency) {
+            float value = 0;
 
             for (int i = 0; i < octave; i++) {
-                frequency = (int)Math.Pow(frequency, i);
-                amplitude = (float)Math.Pow(persistence, i);
                 value += rawNoise1D(x * frequency) * amplitude;
             }
+            
             return value;
         }
 
-        public static float smoothNoise2D(float x, float y, float persistence, int octave, float frequency) {
-            float value = 0, amplitude;
+        public static float smoothNoise2D(float x, float y, float amplitude, int octave, float frequency) {
+            float value = 0;
 
             for(int i=0; i<octave; i++){
-                frequency = (int)Math.Pow(frequency, i);
-                amplitude = (float)Math.Pow(persistence, i);
-                value = value + rawNoise2D(x*frequency, y*frequency)*amplitude;
-            }
+                value += value + rawNoise2D(x*frequency, y*frequency)*amplitude;
+            }            
             return value;
         }
 
