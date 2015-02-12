@@ -249,7 +249,7 @@ namespace DevconTools {
             dynamic value = 0;
             x = extract_number(x);
             y = extract_number(y);
-            value = (x * y);
+            value = (x * y)/2;
             return value;
         }
 

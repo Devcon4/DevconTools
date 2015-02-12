@@ -14,9 +14,9 @@ using System.Timers;
 namespace Execute {
     public class Program {
         private static System.IO.StreamWriter textStream = new System.IO.StreamWriter(
-                                                           @"C:\Users\Devyn\Desktop\DataMT-2.txt");
+                                                           @"C:\Users\Devyn\Desktop\DataMT-3.txt");
         private static System.IO.StreamWriter xmlStream = new System.IO.StreamWriter(
-                                                   @"C:\Users\Devyn\Desktop\XDataMT-2.xml");
+                                                   @"C:\Users\Devyn\Desktop\XDataMT-3.xml");
 
         public static void print(dynamic input) { Console.WriteLine(input); }
         public static void readKey() { Console.ReadKey(); }
@@ -43,7 +43,7 @@ namespace Execute {
             Console.WriteLine("Time: {0}", timer.Elapsed);
             //speedTests2(128, 128);
             print("Created Image----------");
-            noise.Save(@"C:\Users\Devyn\Desktop\Data2D-13.png");
+            noise.Save(@"C:\Users\Devyn\Desktop\Data2D-14.png");
             print("Saved Image------------");
             readKey();
 
@@ -82,7 +82,7 @@ namespace Execute {
             Console.WriteLine("NoiseLock Time: {0}", timer.Elapsed);
             timer.Reset();
 
-            noiseLock.Save(@"C:\Users\Devyn\Desktop\Data2D-11.png", System.Drawing.Imaging.ImageFormat.Png);
+            noiseLock.Save(@"C:\Users\Devyn\Desktop\Data2D-15.png", System.Drawing.Imaging.ImageFormat.Png);
 
             print("Image Saved------------");
 

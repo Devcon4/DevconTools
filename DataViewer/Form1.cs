@@ -13,7 +13,7 @@ using System.Timers;
 namespace DataViewer {
     public partial class MainForm : Form {
         System.IO.StreamWriter textStream = new System.IO.StreamWriter(
-                                          @"C:\Users\Devyn\Desktop\Data2D-1.txt");
+                                          @"C:\Users\Home\Desktop\Data2D-23.txt");
         public int interval = 0;
         public MainForm() {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace DataViewer {
             Bitmap pic = spBitmap(width, height);
             if (Graphic1.Image != null) Graphic1.Image.Dispose();
             Graphic1.Image = pic;
-            //pic.Save(@"C:\Users\Devyn\Desktop\Data2D-3.png");
+            pic.Save(@"C:\Users\Home\Desktop\DataNew2D-5.png");
             updateGraphics();
         }
 
@@ -49,7 +49,7 @@ namespace DataViewer {
             float lastNoise;
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    float noise = (((pnng.smoothNoise2D(i, j, 1, 1, 1) + 1) / 2) * 255);
+                    float noise = (((pnng.smoothNoise(i, j, 1, 1, 32) + 1) / 2) * 255);
                     lastNoise = noise;
 
                     Color clr = Color.FromArgb((int)noise, (int)noise, (int)noise);
@@ -81,7 +81,7 @@ namespace DataViewer {
             for (int i = 0; i < bmpData.Stride; i++) {
                 for (int j = 0; j < height; j++) {
                     //float noise = 100;
-                    float noise = ((pnng.smoothNoise2D(i+interval, j+interval, 1, 1, 1)+1)/2)*256;
+                    float noise = ((pnng.smoothNoise(i+interval, j+interval, 1, 1, 1)+1)/2)*256;
                     //addToText("x:"+i+" y:"+j+" noise:"+noise);
                     rgbValues[rgbLength] = (byte)noise;
                     rgbLength++;

@@ -22,20 +22,20 @@ namespace DevconTools {
             return (a * (1 - value) + b * value);
         }
 
-        public static float noiseTool(int x) { return prng.MersenneTwister(x); }
+        public static float noiseTool(float x) { return prng.MersenneTwister(x); }
         public static float noiseTool(float x, float y) { return prng.MersenneTwister(x,y); }
 
         #endregion
         #region Perilin Noise Number Generators.
 
-        private static float rawNoise1D(float x) {
+        public static float rawNoise(float x) {
             float value = 0;
-            value = noiseTool((int)x) / 2 + noiseTool((int)x - 1) / 4 + noiseTool((int)x + 1) / 4;
+            value = noiseTool(x) / 2 + noiseTool((int)x - 1) / 4 + noiseTool((int)x + 1) / 4;
             value /= 0x7fffffff;
             return value;
         }
 
-        private static float rawNoise2D(float x, float y) {
+        public static float rawNoise(float x, float y) {
             float value = 0, corners = 0, sides = 0, center = 0;
             corners = (noiseTool(x - 1, y - 1) + noiseTool(x + 1, y - 1) + noiseTool(x - 1, y + 1) + noiseTool(x + 1, y + 1)) / 16;
             sides = (noiseTool(x - 1, y) + noiseTool(x + 1, y) + noiseTool(x, y - 1) + noiseTool(x, y + 1)) / 8;
@@ -45,22 +45,19 @@ namespace DevconTools {
             return value;
         }
 
-        public static float smoothNoise1D(float x, float amplitude, int octave, float frequency) {
+        public static float smoothNoise(float x, float amplitude, int octave, float frequency) {
             float value = 0;
-
             for (int i = 0; i < octave; i++) {
-                value += rawNoise1D(x * frequency) * amplitude;
+                value += rawNoise(x * frequency) / amplitude;
             }
-            
             return value;
         }
 
-        public static float smoothNoise2D(float x, float y, float amplitude, int octave, float frequency) {
+        public static float smoothNoise(float x, float y, float amplitude, int octave, float frequency) {
             float value = 0;
-
-            for(int i=0; i<octave; i++){
-                value += value + rawNoise2D(x*frequency, y*frequency)*amplitude;
-            }            
+            for (int i = 0; i < octave; i++) {
+                value += rawNoise(x * frequency, y * frequency) / amplitude;
+            }
             return value;
         }
 
