@@ -24,12 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea28 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,6 +51,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -60,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -96,39 +99,39 @@
             this.chart1.BackColor = System.Drawing.Color.Gray;
             this.chart1.BorderlineColor = System.Drawing.Color.Gray;
             this.chart1.BorderSkin.BorderColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisX.IsMarginVisible = false;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisX2.IsMarginVisible = false;
-            chartArea4.AxisX2.LineColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisX2.MajorGrid.Enabled = false;
-            chartArea4.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisY2.LineColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisY2.MajorGrid.Enabled = false;
-            chartArea4.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            chartArea4.BorderColor = System.Drawing.Color.DimGray;
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea28.AxisX.IsMarginVisible = false;
+            chartArea28.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisX.MajorGrid.Enabled = false;
+            chartArea28.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisX2.IsMarginVisible = false;
+            chartArea28.AxisX2.LineColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisX2.MajorGrid.Enabled = false;
+            chartArea28.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisY.MajorGrid.Enabled = false;
+            chartArea28.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisY2.LineColor = System.Drawing.Color.DimGray;
+            chartArea28.AxisY2.MajorGrid.Enabled = false;
+            chartArea28.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea28.BorderColor = System.Drawing.Color.DimGray;
+            chartArea28.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea28);
             this.chart1.Cursor = System.Windows.Forms.Cursors.Default;
             this.chart1.Location = new System.Drawing.Point(140, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series4.BorderColor = System.Drawing.Color.White;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.Goldenrod;
-            series4.LabelForeColor = System.Drawing.Color.Transparent;
-            series4.Name = "Data1";
-            series4.ShadowColor = System.Drawing.Color.White;
-            series4.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series4.YValuesPerPoint = 4;
-            this.chart1.Series.Add(series4);
+            series28.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series28.BorderColor = System.Drawing.Color.White;
+            series28.ChartArea = "ChartArea1";
+            series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series28.Color = System.Drawing.Color.Goldenrod;
+            series28.LabelForeColor = System.Drawing.Color.Transparent;
+            series28.Name = "Data1";
+            series28.ShadowColor = System.Drawing.Color.White;
+            series28.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series28.YValuesPerPoint = 4;
+            this.chart1.Series.Add(series28);
             this.chart1.Size = new System.Drawing.Size(620, 220);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -271,39 +274,39 @@
             this.chart2.BackColor = System.Drawing.Color.Gray;
             this.chart2.BorderlineColor = System.Drawing.Color.Gray;
             this.chart2.BorderSkin.BorderColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisX.IsMarginVisible = false;
-            chartArea5.AxisX.LineColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisX.MajorGrid.Enabled = false;
-            chartArea5.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisX2.IsMarginVisible = false;
-            chartArea5.AxisX2.LineColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisX2.MajorGrid.Enabled = false;
-            chartArea5.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisY.LineColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisY.MajorGrid.Enabled = false;
-            chartArea5.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisY2.LineColor = System.Drawing.Color.DimGray;
-            chartArea5.AxisY2.MajorGrid.Enabled = false;
-            chartArea5.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            chartArea5.BorderColor = System.Drawing.Color.DimGray;
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
+            chartArea29.AxisX.IsMarginVisible = false;
+            chartArea29.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisX.MajorGrid.Enabled = false;
+            chartArea29.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisX2.IsMarginVisible = false;
+            chartArea29.AxisX2.LineColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisX2.MajorGrid.Enabled = false;
+            chartArea29.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisY.MajorGrid.Enabled = false;
+            chartArea29.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisY2.LineColor = System.Drawing.Color.DimGray;
+            chartArea29.AxisY2.MajorGrid.Enabled = false;
+            chartArea29.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea29.BorderColor = System.Drawing.Color.DimGray;
+            chartArea29.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea29);
             this.chart2.Cursor = System.Windows.Forms.Cursors.Default;
             this.chart2.Location = new System.Drawing.Point(140, 242);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series5.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series5.BorderColor = System.Drawing.Color.White;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Goldenrod;
-            series5.LabelForeColor = System.Drawing.Color.Transparent;
-            series5.Name = "Data1";
-            series5.ShadowColor = System.Drawing.Color.White;
-            series5.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series5.YValuesPerPoint = 4;
-            this.chart2.Series.Add(series5);
+            series29.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series29.BorderColor = System.Drawing.Color.White;
+            series29.ChartArea = "ChartArea1";
+            series29.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series29.Color = System.Drawing.Color.Goldenrod;
+            series29.LabelForeColor = System.Drawing.Color.Transparent;
+            series29.Name = "Data1";
+            series29.ShadowColor = System.Drawing.Color.White;
+            series29.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series29.YValuesPerPoint = 4;
+            this.chart2.Series.Add(series29);
             this.chart2.Size = new System.Drawing.Size(620, 220);
             this.chart2.TabIndex = 10;
             this.chart2.Text = "chart2";
@@ -319,7 +322,6 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // button3
@@ -343,42 +345,42 @@
             this.chart3.BackColor = System.Drawing.Color.Gray;
             this.chart3.BorderlineColor = System.Drawing.Color.Gray;
             this.chart3.BorderSkin.BorderColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisX.IsMarksNextToAxis = false;
-            chartArea6.AxisX.LineColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisX.MajorTickMark.Enabled = false;
-            chartArea6.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisX2.LineColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisX2.MajorGrid.Enabled = false;
-            chartArea6.AxisX2.MajorTickMark.Enabled = false;
-            chartArea6.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisY.LineColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisY.MajorGrid.Enabled = false;
-            chartArea6.AxisY.MajorTickMark.Enabled = false;
-            chartArea6.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisY2.LineColor = System.Drawing.Color.DimGray;
-            chartArea6.AxisY2.MajorGrid.Enabled = false;
-            chartArea6.AxisY2.MajorTickMark.Enabled = false;
-            chartArea6.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
-            chartArea6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            chartArea6.BorderColor = System.Drawing.Color.DimGray;
-            chartArea6.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea6);
+            chartArea30.AxisX.IsMarksNextToAxis = false;
+            chartArea30.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisX.MajorTickMark.Enabled = false;
+            chartArea30.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisX2.LineColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisX2.MajorGrid.Enabled = false;
+            chartArea30.AxisX2.MajorTickMark.Enabled = false;
+            chartArea30.AxisX2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisY.MajorGrid.Enabled = false;
+            chartArea30.AxisY.MajorTickMark.Enabled = false;
+            chartArea30.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisY2.LineColor = System.Drawing.Color.DimGray;
+            chartArea30.AxisY2.MajorGrid.Enabled = false;
+            chartArea30.AxisY2.MajorTickMark.Enabled = false;
+            chartArea30.AxisY2.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea30.BorderColor = System.Drawing.Color.DimGray;
+            chartArea30.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea30);
             this.chart3.Cursor = System.Windows.Forms.Cursors.Default;
             this.chart3.Location = new System.Drawing.Point(767, 242);
             this.chart3.Name = "chart3";
             this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series6.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series6.BorderColor = System.Drawing.Color.White;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
-            series6.Color = System.Drawing.Color.Goldenrod;
-            series6.IsXValueIndexed = true;
-            series6.LabelForeColor = System.Drawing.Color.Transparent;
-            series6.Name = "Data1";
-            series6.ShadowColor = System.Drawing.Color.White;
-            series6.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series6.YValuesPerPoint = 4;
-            this.chart3.Series.Add(series6);
+            series30.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series30.BorderColor = System.Drawing.Color.White;
+            series30.ChartArea = "ChartArea1";
+            series30.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
+            series30.Color = System.Drawing.Color.Goldenrod;
+            series30.IsXValueIndexed = true;
+            series30.LabelForeColor = System.Drawing.Color.Transparent;
+            series30.Name = "Data1";
+            series30.ShadowColor = System.Drawing.Color.White;
+            series30.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series30.YValuesPerPoint = 4;
+            this.chart3.Series.Add(series30);
             this.chart3.Size = new System.Drawing.Size(201, 220);
             this.chart3.TabIndex = 13;
             this.chart3.Text = "chart3";
@@ -427,12 +429,12 @@
             1,
             0,
             0,
-            131072});
+            0});
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 265);
+            this.checkBox2.Location = new System.Drawing.Point(14, 265);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(86, 17);
             this.checkBox2.TabIndex = 17;
@@ -440,12 +442,49 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(59, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Walker Speed\r\n";
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.numericUpDown6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown6.ForeColor = System.Drawing.Color.Goldenrod;
+            this.numericUpDown6.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown6.Location = new System.Drawing.Point(14, 288);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(45, 16);
+            this.numericUpDown6.TabIndex = 18;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(980, 474);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.numericUpDown6);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDown5);
@@ -475,6 +514,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,6 +543,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown5;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
     }
 }
 

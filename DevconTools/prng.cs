@@ -203,7 +203,8 @@ namespace DevconTools {
         static int[] mt = new int[623];
         static int index = 0;
 
-        private static void initialize_generator(dynamic seed) {
+        //Seed the Generator.
+        private static void initGenerator(float seed) {
             index = 0;
             mt[0] = (int)seed;
             for (int i = 1; i < 623; i++) {
@@ -212,9 +213,10 @@ namespace DevconTools {
             }
         }
 
-        private static int extract_number(dynamic seed) {
-            initialize_generator(seed);
-            if (index == 0) { generate_numbers(); }
+        //Extract the number.
+        private static int getNumber(float seed) {
+            initGenerator(seed);
+            if (index == 0) { genNumbers(); }
 
             int y = mt[index];
             y ^= (y << 11);
@@ -226,7 +228,8 @@ namespace DevconTools {
             return y;
         }
 
-        private static void generate_numbers() {
+        //Generate numbers for mt.
+        private static void genNumbers() {
             for (int i = 0; i < 623; i++) {
 
                 int y = (int)((mt[i] & 0x80000000)
@@ -240,16 +243,17 @@ namespace DevconTools {
         #endregion
         #region Functions -----------------------------------------
 
-        public static dynamic MersenneTwister(dynamic x) {
-            dynamic value = 0;
-            value = extract_number(x);
+        public static float MersenneTwister(float x) {
+            float value = getNumber(x);
+            value /= 0x7fffffff;
             return value;
         }
-        public static dynamic MersenneTwister(dynamic x, dynamic y) {
-            dynamic value = 0;
-            x = extract_number(x);
-            y = extract_number(y);
-            value = (x * y)/2;
+        public static float MersenneTwister(float x, float y) {
+            float value = 0;
+            x = getNumber(x);
+            y = getNumber(y);
+            value = (x + y)/2;
+            value /= 0x7fffffff;
             return value;
         }
 

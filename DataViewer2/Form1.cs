@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 using System.Windows.Forms;
 using DevconTools;
 
@@ -44,9 +45,11 @@ namespace DataViewer2 {
 
         private void dataThread() {
 
-            float point1 = pnng.smoothNoise(interval, (float)numericUpDown2.Value, (int)numericUpDown3.Value, (float)numericUpDown4.Value);
-            float point2 = pnng.smoothNoise(interval, 1, 1, 1);
-            float point3 = pnng.smoothNoise(interval, (float)numericUpDown2.Value, (int)numericUpDown3.Value, (float)numericUpDown4.Value);
+            float point1 = prng.MersenneTwister(interval);
+            //point1 /= 0x7fffffff;
+            float point2 = prng.MersenneTwister(interval / 10);
+            point2 /= 0x7fffffff;
+            float point3 = prng.MersenneTwister(interval);
 
             chart1.Series["Data1"].Points.AddY(point1);
             chart2.Series["Data1"].Points.AddY(point2);
@@ -72,17 +75,35 @@ namespace DataViewer2 {
             if (toggle2D && toggleType) {
                 pictureBox1.Image = ifg.quickHeightMap(pictureBox1.Width, pictureBox1.Height, (float)numericUpDown2.Value, (int)numericUpDown3.Value, (float)numericUpDown4.Value);
             } else if (toggle2D && !toggleType) {
-                graphics1.FillRectangle(brush1, 10, 10, 1, 1);
+                randomWalker();
             }
         }
 
         private void randomWalker() {
 
+            float val = prng.MersenneTwister(position.X + position.Y);
+            val++;
+            val /= 2;
+
+            Console.WriteLine(val);
+
+            if (val >= 0 && val <= .25f) {
+                position = new Point(position.X + 1, position.Y);
+            } else if (val > .25f && val <= .5f) {
+                position = new Point(position.X - 1, position.Y);
+            } else if (val > .5f && val <= .75f) {
+                position = new Point(position.X, position.Y + 1);
+            } else if (val > .75f && val <= 1) {
+                position = new Point(position.X, position.Y - 1);
+            }
+
+            graphics1.FillRectangle(brush1, position.X, position.Y, 1, 1);
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
             if (!button2Toggled) {
                 dataThread();
+                pictureThread();
             }
         }
 
@@ -101,6 +122,12 @@ namespace DataViewer2 {
         }
 
         private void timer2_Tick(object sender, EventArgs e) {
+            if (toggleType){
+                if (!backgroundWorker1.IsBusy) { backgroundWorker1.RunWorkerAsync(); }
+            } else {
+                //pictureThread();
+            }
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
@@ -121,6 +148,10 @@ namespace DataViewer2 {
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e) {
             toggleType = checkBox2.Checked;
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e) {
+            timer2.Interval = (int)numericUpDown6.Value;
         }
 
 
