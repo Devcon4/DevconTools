@@ -49,7 +49,7 @@ namespace DataViewer {
             float lastNoise;
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    float noise = (((pnng.smoothNoise(i, j, 1, 1, 32) + 1) / 2) * 255);
+                    float noise = ((((float)pnng.Noise(i, j, 0) + 1) / 2) * 255);
                     lastNoise = noise;
 
                     Color clr = Color.FromArgb((int)noise, (int)noise, (int)noise);

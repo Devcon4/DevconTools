@@ -19,7 +19,7 @@ namespace DataViewer2 {
         private bool button2Toggled = false;
         private bool toggle2D = false;
         private bool toggleType = false;
-        private float interval = 0;
+        private float interval = 1, z = 0;
         private Graphics graphics1;
         private Brush brush1 = (Brush)Brushes.Black;
         private Point position;
@@ -32,6 +32,7 @@ namespace DataViewer2 {
             pictureThread();
             timer1.Start();
             timer2.Start();
+            
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -45,11 +46,15 @@ namespace DataViewer2 {
 
         private void dataThread() {
 
-            float point1 = prng.MersenneTwister(interval);
-            //point1 /= 0x7fffffff;
-            float point2 = prng.MersenneTwister(interval / 10);
-            point2 /= 0x7fffffff;
-            float point3 = prng.MersenneTwister(interval);
+            float point1 = (float)pnng.Noise(interval, 0, 0);
+
+            double point2 = point1 + (pnng.Noise(interval * 2, 0, 0) / 2);
+            point2 += pnng.Noise(interval * 4, 0, 0) / 4;
+            point2 += pnng.Noise(interval * 16, 0, 0) / 8;
+            point2 *= 16;
+            point2 = Math.Floor(point2);
+
+            float point3 = (float)point2;
 
             chart1.Series["Data1"].Points.AddY(point1);
             chart2.Series["Data1"].Points.AddY(point2);
@@ -72,11 +77,7 @@ namespace DataViewer2 {
 
         private void pictureThread() {
 
-            if (toggle2D && toggleType) {
-                pictureBox1.Image = ifg.quickHeightMap(pictureBox1.Width, pictureBox1.Height, (float)numericUpDown2.Value, (int)numericUpDown3.Value, (float)numericUpDown4.Value);
-            } else if (toggle2D && !toggleType) {
-                randomWalker();
-            }
+                //pictureBox1.Image = ifg.QuickHeightMap(pictureBox1.Width, pictureBox1.Height, 6);
         }
 
         private void randomWalker() {
@@ -103,7 +104,6 @@ namespace DataViewer2 {
         private void timer1_Tick(object sender, EventArgs e) {
             if (!button2Toggled) {
                 dataThread();
-                pictureThread();
             }
         }
 
@@ -122,6 +122,9 @@ namespace DataViewer2 {
         }
 
         private void timer2_Tick(object sender, EventArgs e) {
+
+            pictureThread();
+
             if (toggleType){
                 if (!backgroundWorker1.IsBusy) { backgroundWorker1.RunWorkerAsync(); }
             } else {

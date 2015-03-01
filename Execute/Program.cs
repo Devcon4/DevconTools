@@ -56,7 +56,7 @@ namespace Execute {
             float noise1D = 0, noise2D = 0;
             timer.Start();
             for (int i = 0; i < 100000; i++) {
-                noise1D += pnng.smoothNoise1D(1, 1, 1, 1);
+                noise1D += pnng.smoothNoise(1, 1, 1, 1);
             }
             noise1D /= 100000;
             timer.Stop();
@@ -64,7 +64,7 @@ namespace Execute {
             timer.Reset();
             timer.Start();
             for (int i = 0; i < 100000; i++) {
-                noise2D += pnng.smoothNoise2D(1, 1, 1, 1, 1);
+                noise2D += pnng.smoothNoise(1, 1, 1, 1, 1);
             }
             noise2D /= 100000;
             timer.Stop();
@@ -101,7 +101,7 @@ namespace Execute {
             float lastNoise;
             Parallel.For(0, width, i => {
                 for (int j = 0; j < height; j++) {
-                    float noise = (((pnng.smoothNoise2D(i, j, 1, 1, 1) + 1) / 2) * 255);
+                    float noise = (((pnng.smoothNoise(i, j, 1, 1, 1) + 1) / 2) * 255);
                     lastNoise = noise;
 
                     Color clr = Color.FromArgb((int)noise, (int)noise, (int)noise);
@@ -127,7 +127,7 @@ namespace Execute {
             for (int x = 0; x < height; x++) {
                 for (int y = 0; y < width; y++) {
 
-                    byte value = (byte)(((pnng.smoothNoise2D(x, y, 1, 1, 1) + 1) / 2) * 255);
+                    byte value = (byte)(((pnng.smoothNoise(x, y, 1, 1, 1) + 1) / 2) * 255);
 
                     *pixelPtr = new PixelData(value, value, value);
 
@@ -149,7 +149,7 @@ namespace Execute {
             height -= 1;
             List<float> values = new List<float>();
             for (int i = 0; i < height; i++) {
-                float num = pnng.smoothNoise1D(i, 1, 1, 1);
+                float num = pnng.smoothNoise(i, 1, 1, 1);
                 values.Add(num);
             }
             for (int i = 0; i < values.Count - 1; i++) {
