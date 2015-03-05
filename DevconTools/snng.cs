@@ -1,9 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-//using System.Threading.Tasks;
+﻿/* Purpose: An implimentation of Simplex Noise.
+ * 
+ * Special Notes: N/A.
+ * 
+ * Author: Devyn Cyphers; Devcon.
+ */
+
+using System;
 
 namespace DevconTools {
+    /// <summary>
+    /// Simplex Noise Number Generator.
+    /// </summary>
+    /// <remarks> Simplex noise is a much faster version of Perlin noise.
+    /// Note: This noise is not as tested as PerlinNoiseV2_0.</remarks>
     public static class snng {
 
         // First implimentation of Simplex noise.
@@ -14,7 +23,7 @@ namespace DevconTools {
         private static short[] perm = new short[512];
         private static short[] permMod12 = new short[512];
 
-        static snng() {
+        private static snng() {
             for (int i = 0; i < 512; i++) {
                 perm[i] = p[i & 255];
                 permMod12[i] = (short)(perm[i] % 12);
@@ -74,7 +83,13 @@ namespace DevconTools {
 
 
 
-        // 2D Simplex Noise.
+        /// <summary>
+        /// Simplex Noise.
+        /// Useful for creating fast, multidimentional noise.
+        /// </summary>
+        /// <param name="xin">X coordinate.</param>
+        /// <param name="yin">Y coordinate.</param>
+        /// <returns>Returns noise.</returns>
         public static double Noise(double xin, double yin) {
             // Unskew the cell origin back to (x,y) space
             double n0, n1, n2;
@@ -144,7 +159,14 @@ namespace DevconTools {
             return 70.0 * (n0 + n1 + n2);
         }
 
-        // 3D simplex noise.
+        /// <summary>
+        /// Simplex Noise.
+        /// Useful for creating fast, multidimentional noise.
+        /// </summary>
+        /// <param name="xin">X coordinate.</param>
+        /// <param name="yin">Y coordinate.</param>
+        /// <param name="zin">Z coordinate.</param>
+        /// <returns>Returns noise.</returns>
         public static double Noise(double xin, double yin, double zin) {
             double n0, n1, n2, n3; // Noise contributions from the four corners
             // Skew the input space to determine which simplex cell we're in
@@ -223,7 +245,15 @@ namespace DevconTools {
             return 32.0 * (n0 + n1 + n2 + n3);
         }
 
-        // 4D simplex noise.
+        /// <summary>
+        /// Simplex Noise.
+        /// Useful for creating fast, multidimentional noise.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="z">Z coordinate.</param>
+        /// <param name="w">W coordinate.</param>
+        /// <returns>Return Noise.</returns>
         public static double Noise(double x, double y, double z, double w) {
 
             double n0, n1, n2, n3, n4; // Noise contributions from the five corners
@@ -343,12 +373,16 @@ namespace DevconTools {
 
 
         #endregion
-        
+
     }
 
     // Structs used.
     #region SimplexStructs
 
+    /// <summary>
+    /// Grad Struct.
+    /// Used to define Gradient vectors.
+    /// </summary>
     public class Grad {
         public double x, y, z, w;
 
@@ -359,6 +393,10 @@ namespace DevconTools {
             this.w = w;
         }
 
+        /// <summary>
+        /// Grad Struct.
+        /// Used to define Gradient vectors.
+        /// </summary>
         public Grad(double x, double y, double z) {
             this.x = x;
             this.y = y;

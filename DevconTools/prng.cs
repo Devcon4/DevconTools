@@ -1,20 +1,21 @@
-﻿/*Purpose: Peudo-RandomNumberGenerators: A class designed to fill the need for random number generation.
+﻿/* Purpose: Peudo-RandomNumberGenerators: A class designed to fill the need for random number generation.
  * 
- * Author: Devyn Cyphers
+ * Special Notes: N/A.
  * 
- * Special Notes: N/A
+ * Author: Devyn Cyphers; Devcon.
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-//using System.Threading.Tasks;
 
 namespace DevconTools {
 
-    //Peudo-RandomNumberGenerators:
+    /// <summary>
+    /// Peudo-Random Number Generators.
+    /// </summary>
+    /// <remarks> PRNGs are great for all sort of applications.</remarks>
     public static class prng {
 
+        //UNDOCUMENTED CODE:
         #region Int Random's --------------------------------------
 
         //SeedRandom: used to generate a seed from the system time.
@@ -160,6 +161,8 @@ namespace DevconTools {
         }
 
         #endregion
+
+        //UNDOCUMENTED CODE:
         #region Float Random's-------------------------------------
 
         //Random: used to generate a random number lower than a max(int max). uses system time as seed.
@@ -196,11 +199,13 @@ namespace DevconTools {
             return value;
         }
         #endregion
+
+        //Mersenne twister.
         #region Mersenne twister ----------------------------------
         #region Core ----------------------------------------------
         //varaibles to use.
-        static int[] mt = new int[623];
-        static int index = 0;
+        private static int[] mt = new int[623];
+        private static int index = 0;
 
         //Seed the Generator.
         private static void initGenerator(float seed) {
@@ -242,16 +247,29 @@ namespace DevconTools {
         #endregion
         #region Functions -----------------------------------------
 
+        /// <summary>
+        /// MersenneTwister:
+        /// A high fidelity, medium performance PRNG useful in nearly all applications.
+        /// </summary>
+        /// <param name="x">X seed.</param>
+        /// <returns>Returns value.</returns>
         public static float MersenneTwister(float x) {
             float value = getNumber(x);
             value /= 0x7fffffff;
             return value;
         }
+        /// <summary>
+        /// MersenneTwister:
+        /// A high fidelity, medium performance PRGN useful in nerly all applications.
+        /// </summary>
+        /// <param name="x">X seed.</param>
+        /// <param name="y">Y seed.</param>
+        /// <returns>Returns value.</returns>
         public static float MersenneTwister(float x, float y) {
             float value = 0;
             x = getNumber(x);
             y = getNumber(y);
-            value = (x + y)/2;
+            value = (x + y) / 2;
             value /= 0x7fffffff;
             return value;
         }

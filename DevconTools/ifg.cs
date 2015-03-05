@@ -1,17 +1,26 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
+﻿/* Purpose: Creates bitmaps from noise functions.
+ * 
+ * Special Notes: not usable in most applications, Private.
+ * 
+ * Author: Devyn Cyphers; Devcon.
+ */
+
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-//using System.Threading.Tasks;
-using System.Threading;
 
 namespace DevconTools {
-    //Image File Generator: Used to  create images.
-    public static class ifg {
 
+    /// <summary>
+    /// Image File Generator.
+    /// </summary>
+    /// <remarks>Useful in creating bitmaps.
+    /// Note: Not very useful currently as noise functions can't be modified.</remarks>
+    private static class ifg {
+
+        /// <summary>
+        /// PixelData Struct.
+        /// </summary>
         public struct PixelData {
 
             public byte B;
@@ -25,6 +34,13 @@ namespace DevconTools {
             }
         }
 
+        /// <summary>
+        /// HeightMap.
+        /// Used to create a bitmap.
+        /// </summary>
+        /// <param name="width">Width of the image.</param>
+        /// <param name="height">Height of the image.</param>
+        /// <returns>Returns bitmap.</returns>
         public unsafe static Bitmap HeightMap(int width, int height) {
             Bitmap returnPic = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
@@ -58,7 +74,14 @@ namespace DevconTools {
             return returnPic;
         }
 
-
+        /// <summary>
+        /// QuickHeightMap.
+        /// Used to create a bitmap.
+        /// </summary>
+        /// <param name="width">Width of the image.</param>
+        /// <param name="height">Height of the image.</param>
+        /// <param name="depth">depth of the noise.</param>
+        /// <returns>Returns bitmap.</returns>
         public unsafe static Bitmap QuickHeightMap(int width, int height, float depth) {
             Bitmap returnPic = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             BitmapData bitmapData = returnPic.LockBits(new Rectangle(0, 0, returnPic.Width, returnPic.Height), ImageLockMode.WriteOnly, returnPic.PixelFormat);
@@ -77,7 +100,7 @@ namespace DevconTools {
                 byte* CurrentLine = PtrFirstPixel + (y * bitmapData.Stride);
                 for (int x = 1; x < WidthInBytes + 1; x = x + BytesPerPixel) {
                     double value = 0;
-                    value = pnng.Noise((((x / 3) * freq)), (y * freq), (depth)*freq) / amp;
+                    value = pnng.Noise((((x / 3) * freq)), (y * freq), (depth) * freq) / amp;
                     //value += pnng.Noise((((x / 3) * (freq * 4))), ((y * (freq * 4)))) / (amp / 4);
                     //value += pnng.Noise((((x / 3) * (freq * 8))), ((y * (freq * 8)))) / (amp / 8);
 

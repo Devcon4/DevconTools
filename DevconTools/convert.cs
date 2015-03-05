@@ -1,13 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-//using System.Threading.Tasks;
+﻿/* Purpose: A miscellaneous group of conversion methods.
+ * 
+ * Special Notes: N/A.
+ * 
+ * Author: Devyn Cyphers; Devcon.
+ */
+
+using System;
 
 namespace DevconTools {
-    //Conversions.
+
+    /// <summary>
+    /// Covert.
+    /// </summary>
+    /// <remarks>Useful for misc. conversions.</remarks>
     public static class convert {
 
-        public static Byte[] floatAToByteA(float[] floatArray1){
+        /// <summary>
+        /// FloatAToByteA.
+        /// Converts a float[] to a byte[].
+        /// </summary>
+        /// <param name="floatArray1">Array to convert.</param>
+        /// <returns>Returns Byte[].</returns>
+        public static Byte[] FloatAToByteA(float[] floatArray1) {
             // create a byte array and copy the floats into it.
             var byteArray = new byte[floatArray1.Length * 4];
             Buffer.BlockCopy(floatArray1, 0, byteArray, 0, byteArray.Length);
@@ -19,10 +33,23 @@ namespace DevconTools {
             return byteArray;
         }
 
+        /// <summary>
+        /// InfiniteToDecimal.
+        /// Takes any number and scales it from 0 - 1.
+        /// Note: Conversion may be unstable.
+        /// </summary>
+        /// <param name="number">Number to scale.</param>
+        /// <returns>Returns number from 0 - 1.</returns>
         public static double InfiniteToDecimal(double number) {
             return Math.Pow(number, 2) / (1 + Math.Pow(number, 2));
         }
 
+        /// <summary>
+        /// DecimalToInfinite
+        /// Takes a decimal and scales it from 0 - Infinite.
+        /// </summary>
+        /// <param name="number">Number to scale.</param>
+        /// <returns>Returns number from 0 - Infinite.</returns>
         public static double DecimalToInfinite(double number) {
             return Math.Log(number / (1 - number), Math.E);
         }
