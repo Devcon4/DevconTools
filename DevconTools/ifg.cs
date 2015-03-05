@@ -16,7 +16,7 @@ namespace DevconTools {
     /// </summary>
     /// <remarks>Useful in creating bitmaps.
     /// Note: Not very useful currently as noise functions can't be modified.</remarks>
-    private static class ifg {
+    public static class ifg {
 
         /// <summary>
         /// PixelData Struct.

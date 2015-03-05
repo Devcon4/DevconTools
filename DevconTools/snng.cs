@@ -23,7 +23,7 @@ namespace DevconTools {
         private static short[] perm = new short[512];
         private static short[] permMod12 = new short[512];
 
-        private static snng() {
+        static snng() {
             for (int i = 0; i < 512; i++) {
                 perm[i] = p[i & 255];
                 permMod12[i] = (short)(perm[i] % 12);
