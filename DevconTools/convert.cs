@@ -8,16 +8,23 @@ namespace DevconTools {
     public static class convert {
 
         public static Byte[] floatAToByteA(float[] floatArray1){
-            // create a byte array and copy the floats into it...
+            // create a byte array and copy the floats into it.
             var byteArray = new byte[floatArray1.Length * 4];
             Buffer.BlockCopy(floatArray1, 0, byteArray, 0, byteArray.Length);
 
-            // create a second float array and copy the bytes into it...
+            // create a second float array and copy the bytes into it.
             var floatArray2 = new float[byteArray.Length / 4];
             Buffer.BlockCopy(byteArray, 0, floatArray2, 0, byteArray.Length);
 
             return byteArray;
         }
 
+        public static double InfiniteToDecimal(double number) {
+            return Math.Pow(number, 2) / (1 + Math.Pow(number, 2));
+        }
+
+        public static double DecimalToInfinite(double number) {
+            return Math.Log(number / (1 - number), Math.E);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace DataViewer2 {
         private bool button2Toggled = false;
         private bool toggle2D = false;
         private bool toggleType = false;
-        private float interval = 1, z = 0;
+        private float interval = 1, depth = 0;
         private Graphics graphics1;
         private Brush brush1 = (Brush)Brushes.Black;
         private Point position;
@@ -46,19 +46,15 @@ namespace DataViewer2 {
 
         private void dataThread() {
 
-            float point1 = (float)pnng.Noise(interval, 0, 0);
-
-            double point2 = point1 + (pnng.Noise(interval * 2, 0, 0) / 2);
-            point2 += pnng.Noise(interval * 4, 0, 0) / 4;
-            point2 += pnng.Noise(interval * 16, 0, 0) / 8;
-            point2 *= 16;
-            point2 = Math.Floor(point2);
-
-            float point3 = (float)point2;
+            double point1 = pnng.Noise(interval);
+            
+            double point2 = pnng.Noise(interval);
+            point2 += pnng.Noise((interval) * 4) / 4;
+            point2 += pnng.Noise((interval) * 16) / 16;
 
             chart1.Series["Data1"].Points.AddY(point1);
             chart2.Series["Data1"].Points.AddY(point2);
-            chart3.Series["Data1"].Points.AddY(point3);
+            chart3.Series["Data1"].Points.AddY(point2);
 
             interval += (float)numericUpDown5.Value;
 
@@ -76,8 +72,8 @@ namespace DataViewer2 {
         }
 
         private void pictureThread() {
-
-                //pictureBox1.Image = ifg.QuickHeightMap(pictureBox1.Width, pictureBox1.Height, 6);
+            pictureBox1.Image = ifg.QuickHeightMap(pictureBox1.Width, pictureBox1.Height, depth);
+            depth++;
         }
 
         private void randomWalker() {

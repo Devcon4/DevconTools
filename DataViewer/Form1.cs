@@ -9,11 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevconTools;
+using System.Diagnostics;
 using System.Timers;
+
 namespace DataViewer {
+
     public partial class MainForm : Form {
         System.IO.StreamWriter textStream = new System.IO.StreamWriter(
-                                          @"C:\Users\Home\Desktop\Data2D-23.txt");
+                                          @"C:\Users\Devyn\Desktop\Data2D-23.txt");
+
         public int interval = 0;
         public MainForm() {
             InitializeComponent();
@@ -39,20 +43,30 @@ namespace DataViewer {
             Bitmap pic = spBitmap(width, height);
             if (Graphic1.Image != null) Graphic1.Image.Dispose();
             Graphic1.Image = pic;
-            pic.Save(@"C:\Users\Home\Desktop\DataNew2D-5.png");
+            pic.Save(@"C:\Users\Devyn\Desktop\DataNew2D-5.png");
             updateGraphics();
         }
 
         public Bitmap spBitmap(int width, int height) {
             Bitmap value = new Bitmap(width, height);
 
-            float lastNoise;
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    float noise = ((((float)pnng.Noise(i, j, 0) + 1) / 2) * 255);
-                    lastNoise = noise;
 
-                    Color clr = Color.FromArgb((int)noise, (int)noise, (int)noise);
+                    double persistence = 0.25f;
+                    double total = 0;
+
+                    for (int o = 0; o < 4; o++) {
+                        double frequency = Math.Pow(2, o);
+                        double amplitude = Math.Pow(persistence, o);
+
+                        total += pnng.Noise(i * frequency, j * frequency, 0) * amplitude;
+                    }
+
+                    total = convert.InfiniteToDecimal(total);
+                    total = ((total + 1) / 2) * 255;
+
+                    Color clr = Color.FromArgb((int)total, (int)total, (int)total);
                     value.SetPixel(i, j, clr);
                 }
             }
@@ -81,7 +95,7 @@ namespace DataViewer {
             for (int i = 0; i < bmpData.Stride; i++) {
                 for (int j = 0; j < height; j++) {
                     //float noise = 100;
-                    float noise = ((pnng.smoothNoise(i+interval, j+interval, 1, 1, 1)+1)/2)*256;
+                    float noise = ((pnng.smoothNoise(i + interval, j + interval, 1, 1, 1) + 1) / 2) * 256;
                     //addToText("x:"+i+" y:"+j+" noise:"+noise);
                     rgbValues[rgbLength] = (byte)noise;
                     rgbLength++;
